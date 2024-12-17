@@ -4,11 +4,12 @@ const passport = require("passport");
 const bodyParser = require("body-parser");
 const LocalStrategy = require("passport-local");
 const passportLocalMongoose = require("passport-local-mongoose");
-const User = require("./model/User");
-const Book = require("./model/Book");
+const User = require("./models/user");
+const Book = require("./models/book");
 const connectDB = require('./config/database.config');
 const bookRoutes = require('./routes.js/book.routes');
 const userRoutes = require('./routes.js/user.routes')
+const path = require('path')
 const app = express();
 
 //kết nối MongoDB
@@ -21,7 +22,8 @@ app.use(express.static('public'));
 
 //Cấu hình view engine EJS
 app.set("view engine", "ejs");
-app.set('views', path.json(__dirname, 'views')); // Định nghĩa đường dẫn tới thư mục views
+app.set('views', path.join(__dirname, 'views'));
+// Định nghĩa đường dẫn tới thư mục views
 
 
 app.use(
